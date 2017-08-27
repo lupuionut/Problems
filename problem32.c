@@ -47,6 +47,7 @@ main()
     }
 
     printf("sum of all products is %d\n", array_sum(products));
+    free(products);
     return 1;
 }
 
