@@ -1,13 +1,4 @@
-package main
-
-import (
-    "fmt"
-)
-
-func main() {
-    test := []int{1,2,3,2,2}
-    fmt.Println(totalFruits(test))
-}
+package leetcode
 
 func totalFruits(fruits []int) int {
 
