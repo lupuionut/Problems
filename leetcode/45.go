@@ -20,18 +20,18 @@ func Jump(nums []int) int {
         if distance >= length {
             i = length
             break
-        } 
-        
+        }
+
         max_i := current
         max_v := nums[i+current]
-      
+
         for k := 1; k <= current; k++ {
             left := k + nums[i+k]
             right := max_i + max_v
             if left > right {
                 max_v = nums[i+k]
                 max_i = k
-            } 
+            }
         }
 
         i += max_i

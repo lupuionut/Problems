@@ -35,3 +35,22 @@ func Test_45 (t *testing.T) {
         }
     }
 }
+
+func Test_1162 (t *testing.T) {
+    samples := []*Sample{
+        {Input: [][]int{{1,0,1}, {0,0,0}, {1,0,1}}, Expected: 2,},
+        {Input: [][]int{{1,0,0}, {0,0,0}, {0,0,0}}, Expected: 4,},
+        {Input: [][]int{{1,0,0}, {0,0,0}}, Expected: 3,},
+        {Input: [][]int{{0,0,0}, {0,0,0}}, Expected: -1,},
+        {Input: [][]int{{0,0,1}}, Expected: 2,},
+    }
+    for k, sample := range samples {
+        result := MaxDistance(sample.Input.([][]int))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
