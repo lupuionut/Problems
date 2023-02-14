@@ -75,3 +75,27 @@ func Test_2306 (t *testing.T) {
         }
     }
 }
+
+func Test_2477 (t *testing.T) {
+    type Params struct {
+        First [][]int
+        Second int
+    }
+    samples := []*Sample{
+        {Input: &Params{First: [][]int{{1,0},{0,2},{3,1},{1,4},{5,0}}, Second: 1,}, Expected: 7,},
+        {Input: &Params{First: [][]int{{3,1},{3,2},{1,0},{0,4},{0,5},{4,6}}, Second: 2}, Expected: 7,},
+        {Input: &Params{First: [][]int{{0,1},{1,2},{1,3},{4,2},{5,3},{6,3},{6,7},{8,6},{9,0},{5,10},{11,9},{12,5},{5,13},{8,14},{11,15},{8,16},{17,0},{18,7}}, Second: 13}, Expected: 19},
+        {Input: &Params{First: [][]int{}, Second: 1}, Expected: 0,},
+        {Input: &Params{First: [][]int{{0,1}, {0,2}, {0,3}}, Second: 5}, Expected: 3,},
+    }
+
+    for k, sample := range samples {
+        result := MinimumFuelCost(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
