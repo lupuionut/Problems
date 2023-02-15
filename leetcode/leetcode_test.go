@@ -179,3 +179,30 @@ func Test_1523 (t *testing.T) {
         }
     }
 }
+
+func Test_1017 (t *testing.T) {
+    type Params struct {
+        First string
+        Second string
+    }
+    samples := []*Sample{
+        {Input: &Params{First:  "TAUXXTAUXXTAUXXTAUXXTAUXX", Second: "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX",}, Expected: "TAUXX",},
+        {Input: &Params{First: "ABCABC", Second: "ABC",}, Expected: "ABC",},
+        {Input: &Params{First: "ABABAB", Second: "ABAB",}, Expected: "AB",},
+        {Input: &Params{First: "A", Second: "A",}, Expected: "A",},
+        {Input: &Params{First: "A", Second: "B",}, Expected: "",},
+        {Input: &Params{First: "BBB", Second: "BB",}, Expected: "B",},
+        {Input: &Params{First: "BBBA", Second: "BB",}, Expected: "",},
+        {Input: &Params{First: "BBBA", Second: "AABB",}, Expected: "",},
+    }
+
+    for k, sample := range samples {
+        result := GcdOfStrings(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(string)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, expected, result)
+        }
+    }
+}
