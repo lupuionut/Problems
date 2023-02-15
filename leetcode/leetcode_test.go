@@ -129,3 +129,26 @@ func Test_989 (t *testing.T) {
 func toString[T any](variable T) string {
     return fmt.Sprintf("%v", variable)
 }
+
+func Test_67 (t *testing.T) {
+    type Params struct {
+        First string
+        Second string
+    }
+    samples := []*Sample{
+        {Input: &Params{First: "1", Second: "1",}, Expected: "10",},
+        {Input: &Params{First: "11", Second: "1",}, Expected: "100",},
+        {Input: &Params{First: "1010", Second: "1011",}, Expected: "10101",},
+        {Input: &Params{First: "0001", Second: "00110",}, Expected: "00111",},
+    }
+
+    for k, sample := range samples {
+        result := AddBinary(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(string)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, expected, result)
+        }
+    }
+}
