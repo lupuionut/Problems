@@ -2,6 +2,7 @@ package leetcode
 
 import (
     "testing"
+    "fmt"
 )
 
 type Sample struct {
@@ -98,4 +99,33 @@ func Test_2477 (t *testing.T) {
             t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
         }
     }
+}
+
+func Test_989 (t *testing.T) {
+    type Params struct {
+        First []int
+        Second int
+    }
+    samples := []*Sample{
+        {Input: &Params{First: []int{0}, Second: 0,}, Expected: "[0]",},
+        {Input: &Params{First: []int{9}, Second: 1,}, Expected: "[1 0]",},
+        {Input: &Params{First: []int{1,2,0,0}, Second: 34,}, Expected: "[1 2 3 4]",},
+        {Input: &Params{First: []int{2,7,4}, Second: 181,}, Expected: "[4 5 5]",},
+        {Input: &Params{First: []int{2,1,5}, Second: 806,}, Expected: "[1 0 2 1]",},
+        {Input: &Params{First: []int{1,2,6,3,0,7,1,7,1,9,7,5,6,6,4,4,0,0,6,3}, Second: 516,}, Expected: "[1 2 6 3 0 7 1 7 1 9 7 5 6 6 4 4 0 5 7 9]",},
+    }
+
+    for k, sample := range samples {
+        result := AddToArrayForm(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(string)
+        if toString(result) != expected {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, expected, toString(result))
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, expected, toString(result))
+        }
+    }
+}
+
+func toString[T any](variable T) string {
+    return fmt.Sprintf("%v", variable)
 }
