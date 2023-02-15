@@ -152,3 +152,30 @@ func Test_67 (t *testing.T) {
         }
     }
 }
+
+func Test_1523 (t *testing.T) {
+    type Params struct {
+        First int
+        Second int
+    }
+    samples := []*Sample{
+        {Input: &Params{First: 0, Second: 0,}, Expected: 0,},
+        {Input: &Params{First: 0, Second: 11,}, Expected: 6,},
+        {Input: &Params{First: 0, Second: 8,}, Expected: 4,},
+        {Input: &Params{First: 10, Second: 11,}, Expected: 1,},
+        {Input: &Params{First: 0, Second: 3,}, Expected: 2,},
+        {Input: &Params{First: 1, Second: 3,}, Expected: 2,},
+        {Input: &Params{First: 3, Second: 7,}, Expected: 3,},
+        {Input: &Params{First: 8, Second: 10,}, Expected: 1,},
+    }
+
+    for k, sample := range samples {
+        result := CountOdds(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
