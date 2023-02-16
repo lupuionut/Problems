@@ -206,3 +206,18 @@ func Test_1017 (t *testing.T) {
         }
     }
 }
+
+func Test_104 (t *testing.T) {
+    samples := []*Sample{
+        {Input: &TreeNode{Val: 3, Left: &TreeNode{Val: 9, Left: nil, Right: nil} , Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15, Left: nil, Right: nil}, Right: &TreeNode{Val: 7, Right: nil, Left: nil},},}, Expected: 3,},
+    }
+    for k, sample := range samples {
+        result := MaxDepth(sample.Input.(*TreeNode))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
