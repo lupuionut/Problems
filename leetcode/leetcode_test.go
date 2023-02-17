@@ -221,3 +221,47 @@ func Test_104 (t *testing.T) {
         }
     }
 }
+
+func Test_783 (t *testing.T) {
+    samples := []*Sample{
+        {Input: &TreeNode{Val: 90, Left: &TreeNode{Val: 69, Left: &TreeNode{Val: 49, Left: nil, Right: &TreeNode{Val: 52, Left: nil, Right: nil,},}, Right: &TreeNode{Val: 89, Left: nil, Right: nil,}}, Right: nil}, Expected: 1,},
+        {Input: &TreeNode{Val: 4, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1, Left: nil, Right: nil,}, Right: &TreeNode{Val: 3, Left: nil, Right: nil,}}, Right: &TreeNode{Val: 6, Left: nil, Right: nil,}}, Expected: 1,},
+        {Input: &TreeNode{Val: 1, Left: &TreeNode{Val: 0, Left: nil, Right: nil,}, Right: &TreeNode{Val: 48, Left: &TreeNode{Val: 12, Left: nil, Right: nil,}, Right: &TreeNode{Val: 49, Left: nil, Right: nil,}}}, Expected: 1,},
+        {Input: &TreeNode{Val: 0, Left: nil, Right: &TreeNode{Val: 1, Left: nil, Right: nil,}}, Expected: 1,},
+    }
+    for k, sample := range samples {
+        result := MinDiffInBST(sample.Input.(*TreeNode))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
+/*
+func Test_1129 (t *testing.T) {
+    type Params struct {
+        First int
+        Second [][]int
+        Third [][]int
+    }
+    samples := []*Sample{
+        {Input: &Params{First: 3, Second: [][]int{{0,1},{1,2}}, Third: [][]int{}}, Expected: "[0,1,-1]",},
+    }
+
+    for k, sample := range samples {
+        result := ShortestAlternatingPaths(
+            sample.Input.(*Params).First,
+            sample.Input.(*Params).Second,
+            sample.Input.(*Params).Third,
+        )
+        expected := sample.Expected.(string)
+        if toString(result) != expected {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, toString(expected), toString(result))
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, toString(expected), toString(result))
+        }
+    }
+}
+*/
