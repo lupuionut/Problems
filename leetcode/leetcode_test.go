@@ -268,3 +268,18 @@ func Test_1129 (t *testing.T) {
         }
     }
 }
+
+func Test_226 (t *testing.T) {
+    samples := []*Sample{
+        {Input: &TreeNode{Val: 4, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1, Left: nil, Right: nil,}, Right: &TreeNode{Val: 3, Left: nil, Right: nil,},}, Right: &TreeNode{Val: 7, Left: &TreeNode{Val: 6, Left: nil, Right: nil,}, Right: &TreeNode{Val: 9, Left: nil, Right: nil,},},}, Expected: &TreeNode{Val: 4, Left: &TreeNode{Val: 7, Left: &TreeNode{Val: 9, Left: nil, Right: nil,}, Right: &TreeNode{Val: 6, Left: nil, Right: nil,},}, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3, Left: nil, Right: nil,}, Right: &TreeNode{Val: 1, Left: nil, Right: nil,}}}},
+    }
+    for k, sample := range samples {
+        result := InvertTree(sample.Input.(*TreeNode))
+        expected := sample.Expected.(*TreeNode)
+        if result.String() != expected.String() {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, expected, result)
+        }
+    }
+}
