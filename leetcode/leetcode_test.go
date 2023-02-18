@@ -283,3 +283,24 @@ func Test_226 (t *testing.T) {
         }
     }
 }
+
+func Test_953 (t *testing.T) {
+    type Params struct {
+        First []string
+        Second string
+    }
+    samples := []*Sample{
+        {Input: &Params{First: []string{"hello","leetcode"}, Second: "hlabcdefgijkmnopqrstuvwxyz"}, Expected: true,},
+        {Input: &Params{First: []string{"word","world","row"}, Second: "worldabcefghijkmnpqstuvxyz"}, Expected: false,},
+        {Input: &Params{First: []string{"apple","app"}, Second: "hlabcdefgijkmnopqrstuvwxyz"}, Expected: false,},
+    }
+    for k, sample := range samples {
+        result := IsAlienSorted(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(bool)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
