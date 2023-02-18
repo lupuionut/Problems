@@ -6,9 +6,8 @@ func InvertTree(root *TreeNode) *TreeNode {
     if root == nil {
         return nil
     }
-    newTree := root
-    traverseInvertTree(newTree)
-    return newTree
+    traverseInvertTree(root)
+    return root
 }
 
 func traverseInvertTree(t *TreeNode) {
