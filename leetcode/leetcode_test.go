@@ -239,7 +239,7 @@ func Test_783 (t *testing.T) {
         }
     }
 }
-/*
+
 func Test_1129 (t *testing.T) {
     type Params struct {
         First int
@@ -247,7 +247,11 @@ func Test_1129 (t *testing.T) {
         Third [][]int
     }
     samples := []*Sample{
-        {Input: &Params{First: 3, Second: [][]int{{0,1},{1,2}}, Third: [][]int{}}, Expected: "[0,1,-1]",},
+        {Input: &Params{First: 5, Second: [][]int{{0,1},{1,3},{2,1},{3,1},{2,0},{1,0},{0,2}}, Third: [][]int{{1,2},{3,2},{2,4},{3,3},{0,3},{1,4},{0,1},{0,2},{0,0},{4,1}}}, Expected: "[0 1 1 1 2]",},
+        {Input: &Params{First: 5, Second: [][]int{{2,0},{4,3},{4,4},{3,0},{1,4}}, Third: [][]int {{2,1},{4,3},{3,1},{3,0},{1,1},{2,0},{0,3},{3,3},{2,3}}}, Expected: "[0 -1 -1 1 -1]",},
+        {Input: &Params{First: 5, Second: [][]int{{0,1}, {1,2}, {2,3}, {3,4}}, Third: [][]int{{1,2}, {2,3}, {3,1}}}, Expected: "[0 1 2 3 7]",},
+        {Input: &Params{First: 3, Second: [][]int{{0,1},{1,2}}, Third: [][]int{}}, Expected: "[0 1 -1]",},
+        {Input: &Params{First: 5, Second: [][]int{{0,1},{2,3},{2,4}}, Third: [][]int{{1,2},{3,4}}}, Expected: "[0 1 2 3 3]",},
     }
 
     for k, sample := range samples {
@@ -264,4 +268,3 @@ func Test_1129 (t *testing.T) {
         }
     }
 }
-*/
