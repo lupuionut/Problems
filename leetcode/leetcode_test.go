@@ -304,3 +304,23 @@ func Test_953 (t *testing.T) {
         }
     }
 }
+
+func Test_103 (t *testing.T) {
+    samples := []*Sample{
+        {Input: &TreeNode{Val: 3, Left: &TreeNode{Val: 9, Left: nil, Right: nil}, Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15, Left: nil, Right: nil,}, Right: &TreeNode{Val: 7, Left: nil, Right: nil,}}}, Expected: "[[3] [20 9] [15 7]]",},
+        {Input: &TreeNode{Val: 1, Left: nil, Right: nil}, Expected: "[[1]]",},
+        {Input: &TreeNode{Val: 0,Left: &TreeNode{Val: 2,Left: &TreeNode{Val: 1,Left: &TreeNode{Val: 5,Left: nil,Right: nil,},Right: &TreeNode{Val: 1,Left: nil,Right: nil,},},Right: nil,},Right: &TreeNode{Val: 4,Left: &TreeNode{Val: 3,Left: nil,Right: &TreeNode{Val: 6,Left: nil,Right: nil,},},Right: &TreeNode{Val: -1,Left: nil,Right: &TreeNode{Val: 8,Left: nil,Right: nil,},},},}, Expected: "[[0] [4 2] [1 3 -1] [8 6 1 5]]"},
+    }
+    toString := func(xs [][]int) string {
+        return fmt.Sprintf("%v", xs)
+    }
+    for k, sample := range samples {
+        result := ZigzagLevelOrder(sample.Input.(*TreeNode))
+        expected := sample.Expected.(string)
+        if toString(result) != expected {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, expected, toString(result))
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, expected, toString(result))
+        }
+    }
+}
