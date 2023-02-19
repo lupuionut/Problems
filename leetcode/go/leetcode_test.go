@@ -324,3 +324,26 @@ func Test_103 (t *testing.T) {
         }
     }
 }
+
+func Test_6 (t *testing.T) {
+    type Params struct {
+        First string
+        Second int
+    }
+    samples := []*Sample{
+        {Input: &Params{First: "PAYPALISHIRING", Second: 3,}, Expected: "PAHNAPLSIIGYIR"},
+        {Input: &Params{First: "PAYPALISHIRING", Second: 4,}, Expected: "PINALSIGYAHRPI"},
+        {Input: &Params{First: "A", Second: 1,}, Expected: "A"},
+        {Input: &Params{First: "BA", Second: 1,}, Expected: "BA"},
+        {Input: &Params{First: "BAR", Second: 2,}, Expected: "BRA"},
+    }
+    for k, sample := range samples {
+        result := Convert(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(string)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %s, but got %s", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %s and we got %s", k, expected, result)
+        }
+    }
+}
