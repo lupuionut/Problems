@@ -347,3 +347,27 @@ func Test_6 (t *testing.T) {
         }
     }
 }
+
+func Test_35 (t *testing.T) {
+    type Params struct {
+        First []int
+        Second int
+    }
+    samples := []*Sample{
+        {Input: &Params{First: []int{1,2,3,4}, Second: 2}, Expected: 0,},
+        {Input: &Params{First: []int{1,3,5}, Second: 4}, Expected: 2,},
+        {Input: &Params{First: []int{1,3,5,6}, Second: 0}, Expected: 0,},
+        {Input: &Params{First: []int{1,3,5,6}, Second: 5}, Expected: 2,},
+        {Input: &Params{First: []int{1,3,5,6}, Second: 2}, Expected: 1,},
+        {Input: &Params{First: []int{1,3,5,6}, Second: 7}, Expected: 4,},
+    }
+    for k, sample := range samples {
+        result := SearchInsert(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
