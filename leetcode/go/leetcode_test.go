@@ -354,7 +354,7 @@ func Test_35 (t *testing.T) {
         Second int
     }
     samples := []*Sample{
-        {Input: &Params{First: []int{1,2,3,4}, Second: 2}, Expected: 0,},
+        {Input: &Params{First: []int{1,2,3,4}, Second: 2}, Expected: 1,},
         {Input: &Params{First: []int{1,3,5}, Second: 4}, Expected: 2,},
         {Input: &Params{First: []int{1,3,5,6}, Second: 0}, Expected: 0,},
         {Input: &Params{First: []int{1,3,5,6}, Second: 5}, Expected: 2,},
