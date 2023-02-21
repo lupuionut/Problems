@@ -371,3 +371,41 @@ func Test_35 (t *testing.T) {
         }
     }
 }
+
+func Test_540 (t *testing.T) {
+    samples := []*Sample{
+        {Input: []int{1,1,2,3,3,4,4,8,8}, Expected: 2,},
+        {Input: []int{3,3,7,7,10,11,11}, Expected: 10,},
+        {Input: []int{3,3,7,8,8}, Expected: 7,},
+        {Input: []int{3,3,8,8,1}, Expected: 1,},
+    }
+    for k, sample := range samples {
+        result := SingleNonDuplicate(sample.Input.([]int))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
+/*
+func Test_567 (t *testing.T) {
+    type Params struct {
+        First string
+        Second string
+    }
+    samples := []*Sample{
+        {Input: &Params{First: "ab", Second: "eidbaooo"}, Expected: true,},
+    }
+    for k, sample := range samples {
+        result := CheckInclusion(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(bool)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
+*/
