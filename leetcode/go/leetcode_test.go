@@ -389,14 +389,20 @@ func Test_540 (t *testing.T) {
         }
     }
 }
-/*
+
 func Test_567 (t *testing.T) {
     type Params struct {
         First string
         Second string
     }
     samples := []*Sample{
-        {Input: &Params{First: "ab", Second: "eidbaooo"}, Expected: true,},
+        {Input: &Params{First: "abc", Second: "bbbca"}, Expected: true,},
+        {Input: &Params{First: "adc", Second: "dcda"}, Expected: true,},
+        {Input: &Params{First: "ab", Second: "eidboaoo"}, Expected: false,},
+        {Input: &Params{First: "a", Second: "b"}, Expected: false,},
+        {Input: &Params{First: "ab", Second: "bba"}, Expected: true,},
+        {Input: &Params{First: "ab", Second: "bbcbaac"}, Expected: true,},
+        {Input: &Params{First: "ab", Second: "abaaba"}, Expected: true,},
     }
     for k, sample := range samples {
         result := CheckInclusion(sample.Input.(*Params).First, sample.Input.(*Params).Second)
@@ -408,4 +414,3 @@ func Test_567 (t *testing.T) {
         }
     }
 }
-*/
