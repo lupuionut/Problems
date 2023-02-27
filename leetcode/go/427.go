@@ -16,6 +16,7 @@ func Construct(grid [][]int) *Node {
         dp[k] = make([]*Node, len(grid))
     }
 
+    // initiate each cell with the corresponding value
     for i := 0; i < len(grid); i++ {
         for j := 0; j < len(grid); j++ {
             val := true
@@ -26,6 +27,21 @@ func Construct(grid [][]int) *Node {
         }
     }
 
+    /*
+    we must combine top left with top right with bottom left with bottom right
+    so we must iterate until we have a single row
+
+    |*|*| | |     | | |*|*|    | | | | |    | | | | |
+    |*|*| | |     | | |*|*|    | | | | |    | | | | |
+    | | | | |     | | | | |    |*|*| | |    | | |*|*|
+    | | | | |     | | | | |    |*|*| | |    | | |*|*|
+
+    |*|*|
+    |*|*|
+
+    |*|
+
+    */
     for true {
         if end == 1 {
             break
@@ -43,6 +59,10 @@ func Construct(grid [][]int) *Node {
 
 func NodeCombine (a, b, c, d *Node) *Node {
     sum := boolToInt(a.Val) + boolToInt(b.Val) + boolToInt(c.Val) + boolToInt(d.Val)
+    // if nodes we try to combine are not all leafs
+    // or they contain different values (if all 0 -> sum = 0, if all 1 -> sum = 4)
+    // we return a new node containing all leafs
+    // otherwize return a new node without leafs
     if (a.IsLeaf == false || b.IsLeaf == false || c.IsLeaf == false || d.IsLeaf == false) || (sum != 4 && sum != 0) {
         return &Node{Val: false, IsLeaf: false, TopLeft: a, TopRight: b, BottomLeft: c, BottomRight: d}
     }
