@@ -493,3 +493,21 @@ func Test_72 (t *testing.T) {
         }
     }
 }
+
+func Test_912 (t *testing.T) {
+
+    samples := []*Sample{
+        {Input: []int{5,2,3,1}, Expected: []int{1,2,3,5},},
+        {Input: []int{5,1,1,2,0,0}, Expected: []int{0,0,1,1,2,5},},
+        {Input: []int{0}, Expected: []int{0},},
+    }
+    for k, sample := range samples {
+        result := SortArray(sample.Input.([]int))
+        expected := sample.Expected.([]int)
+        if toString(result) != toString(expected) {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
