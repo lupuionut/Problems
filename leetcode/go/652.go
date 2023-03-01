@@ -19,11 +19,11 @@ func NodeToString(node *TreeNode, occurences map[string][]*TreeNode) string {
 	if node == nil {
 		return ""
 	}
-	val += ","
+	val += "<"
 	val += NodeToString(node.Left, occurences)
 	val += fmt.Sprint(node.Val)
 	val += NodeToString(node.Right, occurences)
-	val += ","
+	val += ">"
 	fmt.Println(val)
 	if _, ok := occurences[val]; ok {
 		occurences[val] = append(occurences[val], node)
