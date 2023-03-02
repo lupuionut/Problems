@@ -511,3 +511,21 @@ func Test_912 (t *testing.T) {
         }
     }
 }
+
+func Test_443 (t *testing.T) {
+
+    samples := []*Sample{
+        {Input: []byte{'a','a','b','b','c','c','c'}, Expected: 6,},
+        {Input: []byte{'a','b','b','b','b','b','b','b','b','b','b','b','b'}, Expected: 4,},
+        {Input: []byte{'a'}, Expected: 1,},
+    }
+    for k, sample := range samples {
+        result := Compress(sample.Input.([]byte))
+        expected := sample.Expected.(int)
+        if toString(result) != toString(expected) {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
