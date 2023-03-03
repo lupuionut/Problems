@@ -529,3 +529,24 @@ func Test_443 (t *testing.T) {
         }
     }
 }
+
+func Test_28 (t *testing.T) {
+    type Params struct {
+        First string
+        Second string
+    }
+    samples := []*Sample{
+        {Input: &Params{First: "sadbutsad", Second: "sad"}, Expected: 0,},
+        {Input: &Params{First: "leetcode", Second: "leto"}, Expected: -1,},
+        {Input: &Params{First: "abc", Second: "c"}, Expected: 2,},
+    }
+    for k, sample := range samples {
+        result := StrStr(sample.Input.(*Params).First, sample.Input.(*Params).Second)
+        expected := sample.Expected.(int)
+        if toString(result) != toString(expected) {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
