@@ -1,21 +1,22 @@
 package leetcode
 
 func StrStr(haystack string, needle string) int {
-	if len(haystack) < len(needle) {
+	ln := len(needle)
+	lh := len(haystack)
+	if lh < ln {
 		return -1
 	}
-	if len(haystack) == len(needle) {
+	if lh == ln {
 		if haystack == needle {
 			return 0
 		} else {
 			return -1
 		}
 	}
-	end := len(haystack) - len(needle)
-	size := len(needle)
+	end := lh - ln
 
 	for i := 0; i <= end; i++ {
-		if haystack[i:i+size] == needle {
+		if haystack[i:i+ln] == needle {
 			return i
 		}
  	}
