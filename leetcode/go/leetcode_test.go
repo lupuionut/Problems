@@ -550,3 +550,25 @@ func Test_28 (t *testing.T) {
         }
     }
 }
+
+func Test_2444 (t *testing.T) {
+    type Params struct {
+        Nums []int
+        Min int
+        Max int
+    }
+    samples := []*Sample{
+        {Input: &Params{Nums: []int{1,3,5,2,7,5}, Min: 1, Max: 5}, Expected: 2,},
+        {Input: &Params{Nums: []int{1,1,1,1}, Min: 1, Max: 1}, Expected: 10,},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := CountSubarrays(params.Nums, params.Min, params.Max)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
