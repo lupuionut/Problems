@@ -572,3 +572,21 @@ func Test_2444 (t *testing.T) {
         }
     }
 }
+
+func Test_1345 (t *testing.T) {
+    samples := []*Sample{
+        {Input: []int{100,-23,-23,404,100,23,23,23,3,404}, Expected: 3,},
+        {Input: []int{7,6,9,6,9,6,9,7}, Expected: 1,},
+        {Input: []int{7}, Expected: 0,},
+    }
+    for k, sample := range samples {
+        params := sample.Input.([]int)
+        result := MinJumps(params)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
