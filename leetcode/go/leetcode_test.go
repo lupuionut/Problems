@@ -590,3 +590,26 @@ func Test_1345 (t *testing.T) {
         }
     }
 }
+
+
+func Test_1539 (t *testing.T) {
+    type Params struct {
+        Arr []int
+        K int
+    }
+    samples := []*Sample{
+        {Input: &Params{Arr: []int{2,3,4,7,11}, K: 5}, Expected: 9,},
+        {Input: &Params{Arr: []int{1,2,3,4}, K: 2}, Expected: 6,},
+        {Input: &Params{Arr: []int{4}, K: 2}, Expected: 2,},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := FindKthPositive(params.Arr, params.K)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
