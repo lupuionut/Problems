@@ -613,3 +613,24 @@ func Test_1539 (t *testing.T) {
         }
     }
 }
+
+func Test_2187 (t *testing.T) {
+    type Params struct {
+        Time []int
+        TotalTrips int
+    }
+    samples := []*Sample{
+        {Input: &Params{Time: []int{1,2,3}, TotalTrips: 5}, Expected: 3,},
+        {Input: &Params{Time: []int{2}, TotalTrips: 1}, Expected: 2,},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := MinimumTime(params.Time, params.TotalTrips)
+        expected := sample.Expected.(int)
+        if int(result) != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
