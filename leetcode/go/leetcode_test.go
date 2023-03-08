@@ -634,3 +634,26 @@ func Test_2187 (t *testing.T) {
         }
     }
 }
+
+func Test_875 (t *testing.T) {
+    type Params struct {
+        Piles []int
+        Hours int
+    }
+    samples := []*Sample{
+        {Input: &Params{Piles: []int{3,6,7,11}, Hours: 8}, Expected: 4,},
+        {Input: &Params{Piles: []int{30,11,23,4,20}, Hours: 5}, Expected: 30,},
+        {Input: &Params{Piles: []int{30,11,23,4,20}, Hours: 6}, Expected: 23,},
+        {Input: &Params{Piles: []int{3,4}, Hours: 10}, Expected: 1,},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := MinEatingSpeed(params.Piles, params.Hours)
+        expected := sample.Expected.(int)
+        if int(result) != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
