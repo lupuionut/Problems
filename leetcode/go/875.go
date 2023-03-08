@@ -1,5 +1,8 @@
 package leetcode
-
+/*
+    Do a binary search and see which is the values of banans
+    that needs to be eaten hourly so that we can fit in the hours constraint
+*/
 func MinEatingSpeed(piles []int, h int) int {
 
     if len(piles) == 1 {
@@ -9,7 +12,8 @@ func MinEatingSpeed(piles []int, h int) int {
         return piles[0]/h
     }
 
-    overHours := func(piles []int, quantity int) bool {
+    // if the quantity is too small, and we need more hours return true
+    overHours := func(quantity int) bool {
         hours := 0
         for k := range piles {
             hours += piles[k]/quantity
@@ -23,28 +27,21 @@ func MinEatingSpeed(piles []int, h int) int {
         return false
     }
 
-    max := func(piles []int) int {
-        m := 0
+    boundaries := func() (int,int) {
+        mn := 0
+        mx := 0
         for k := range piles {
-            if piles[k] > m {
-                m = piles[k]
+            if piles[k] > mx {
+                mx = piles[k]
+            }
+            if piles[k] < mn {
+                mn = piles[k]
             }
         }
-        return m
+        return mn, mx
     }
 
-    min := func(piles []int) int {
-        m := 0
-        for k := range piles {
-            if piles[k] < m {
-                m = piles[k]
-            }
-        }
-        return m
-    }
-
-    left := min(piles)
-    right := max(piles)
+    left, right := boundaries()
 
     for true {
         if left == right {
@@ -55,7 +52,8 @@ func MinEatingSpeed(piles []int, h int) int {
         if mid == 0 {
             return 1
         }
-        if overHours(piles, mid) {
+        // if the quantity of bananas is too little, move left to mid
+        if overHours(mid) {
             left = mid + 1
         } else {
             right = mid
