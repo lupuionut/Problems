@@ -1,30 +1,25 @@
 package leetcode
 
 import (
-    //"fmt"
+    "math/rand"
     "time"
 )
 
 type Solution struct {
-    Nodes *ListNode
-    Cursor *ListNode
+    Nodes []int
 }
 
-func SolutionConstructor(head *ListNode) Solution {
-    return Solution{Nodes: head, Cursor: head}
+func Constructor(head *ListNode) Solution {
+    s := Solution{}
+    for a := head; a != nil; a = a.Next {
+        s.Nodes = append(s.Nodes, a.Val)
+    }
+    return s
 }
+
 
 func (this *Solution) GetRandom() int {
-    counter := time.Now().UnixMicro() & 0xfff
-
-    for counter > 0 {
-        if this.Cursor.Next == nil {
-            this.Cursor = this.Nodes
-        } else {
-            this.Cursor = this.Cursor.Next
-        }
-        counter -= 1
-    }
-
-    return this.Cursor.Val
+    rand.Seed(time.Now().UnixNano())
+    return this.Nodes[rand.Intn(len(this.Nodes))]
 }
+
