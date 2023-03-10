@@ -17,7 +17,6 @@ func Constructor(head *ListNode) Solution {
     return s
 }
 
-
 func (this *Solution) GetRandom() int {
     rand.Seed(time.Now().UnixNano())
     return this.Nodes[rand.Intn(len(this.Nodes))]
