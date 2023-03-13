@@ -26,10 +26,7 @@ func IsSymmetric(root *TreeNode) bool {
         }
 
         for i := 0; i < ll; i++ {
-            if left[i] == nil && right[i] != nil {
-                return false
-            }
-            if left[i] != nil && right[i] == nil {
+            if (left[i] == nil && right[i] != nil) || (left[i] != nil && right[i] == nil) {
                 return false
             }
             if left[i] != nil && right[i] != nil {
