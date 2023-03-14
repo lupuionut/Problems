@@ -672,3 +672,18 @@ func Test_142 (t *testing.T) {
         t.Errorf("Expected result %v and we got %v", b, result)
     }
 }
+
+func Test_129 (t *testing.T) {
+    samples := []*Sample{
+        {Input: &TreeNode{Val: 1, Left: &TreeNode{Val: 2}, Right: &TreeNode{Val: 3}}, Expected: 25},
+    }
+    for k, sample := range samples {
+        result := SumNumbers(sample.Input.(*TreeNode))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
