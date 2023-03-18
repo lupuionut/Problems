@@ -687,3 +687,18 @@ func Test_129 (t *testing.T) {
         }
     }
 }
+
+func Test_1472 (t *testing.T) {
+    obj := BrowserHistoryConstructor("leetcode.com");
+    obj.Visit("facebook.com");
+    obj.Visit("youtube.com");
+    obj.Back(1);
+    obj.Visit("bing.com")
+    obj.Back(1);
+    obj.Visit("duckduckgo.com")
+    result := obj.Back(2);
+    expected := "leetcode.com"
+    if result != expected {
+        t.Errorf("Expected result %v and got %v", expected, result)
+    }
+}
