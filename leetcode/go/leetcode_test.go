@@ -702,3 +702,28 @@ func Test_1472 (t *testing.T) {
         t.Errorf("Expected result %v and got %v", expected, result)
     }
 }
+
+
+func Test_211 (t *testing.T) {
+    obj := WordDictionaryConstructor();
+    obj.AddWord("xgvk")
+    obj.AddWord("wykzbvwdsoyfowqicymzd")
+    obj.AddWord("xajbtjyjuwgoynjgu")
+    obj.Search("wykzbvwdso..owqicymzd")
+    obj.Search("..ha")
+    obj.AddWord("qsibzxaorktypkfg")
+    obj.Search("xgvk")
+    obj.AddWord("vbycuvrkbcq")
+    obj.Search("qsibz.aorkty.kfg")
+    obj.AddWord("sm")
+    obj.AddWord("fkqclfmvzpzpnbvz")
+    obj.Search("vb..uvrkbcq")
+    obj.AddWord("jpnneostllnnma")
+    obj.AddWord("zvmtfg")
+    obj.Search(".g..")
+    result := obj.Search(".kqclfmvzpzpnbvz")
+    expected := true
+    if result != expected {
+        t.Errorf("Expected result %v and got %v", expected, result)
+    }
+}
