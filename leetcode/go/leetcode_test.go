@@ -727,3 +727,20 @@ func Test_211 (t *testing.T) {
         t.Errorf("Expected result %v and got %v", expected, result)
     }
 }
+
+func Test_7 (t *testing.T) {
+    samples := []*Sample{
+        {Input: 123, Expected: 321},
+        {Input: -123, Expected: -321},
+        {Input: 120, Expected: 21,},
+    }
+    for k, sample := range samples {
+        result := Reverse(sample.Input.(int))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %d, but got %d", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %d and we got %d", k, expected, result)
+        }
+    }
+}
