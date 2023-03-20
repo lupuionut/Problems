@@ -23,6 +23,8 @@ func Reverse(x int) int {
         addition := (t * int(math.Pow10(p)))
 
         // check for overflow
+        // substract from min/max the value we need to add, this way
+        // we stay inside the limits
         if sign == 1 {
             if max - addition < r {
                 r = 0
@@ -30,7 +32,6 @@ func Reverse(x int) int {
             }
         } else {
             if min - (sign*addition) > (sign*r) {
-                fmt.Println(addition, r)
                 r = 0
                 break
             }
