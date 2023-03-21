@@ -744,3 +744,34 @@ func Test_7 (t *testing.T) {
         }
     }
 }
+
+func Test_10 (t *testing.T) {
+    type Params struct {
+        Word string
+        Pattern string
+    }
+    samples := []*Sample{
+        {Input: &Params{Word: "bbbba", Pattern: ".*a*a"}, Expected: true},
+        {Input: &Params{Word: "testing", Pattern: ".*"}, Expected: true},
+        {Input: &Params{Word: "testing", Pattern: "t.*ting"}, Expected: true},
+        {Input: &Params{Word: "abc", Pattern: "abcdef"}, Expected: false},
+        {Input: &Params{Word: "a", Pattern: "ab*"}, Expected: true},
+        {Input: &Params{Word: "aaa", Pattern: "a*a"}, Expected: true},
+        {Input: &Params{Word: "aab", Pattern: "c*a*b"}, Expected: true},
+        {Input: &Params{Word: "teeeering", Pattern: "te*ring"}, Expected: true},
+        {Input: &Params{Word: "testing", Pattern: "testing"}, Expected: true},
+        {Input: &Params{Word: "testing", Pattern: "te.ting"}, Expected: true},
+        {Input: &Params{Word: "teg", Pattern: "te.*ting"}, Expected: false},
+        {Input: &Params{Word: "teas", Pattern: "ta*e*as"}, Expected: true},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := IsMatch(params.Word, params.Pattern)
+        expected := sample.Expected.(bool)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
