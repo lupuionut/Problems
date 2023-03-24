@@ -775,3 +775,24 @@ func Test_10 (t *testing.T) {
         }
     }
 }
+
+func Test_1466 (t *testing.T) {
+    type Params struct {
+        N int
+        Connections [][]int
+    }
+    samples := []*Sample{
+        {Input: &Params{N: 6, Connections: [][]int{{0,1},{1,3},{2,3},{4,0},{4,5}}}, Expected: 3},
+        {Input: &Params{N: 5, Connections: [][]int{{1,0},{1,2},{3,2},{3,4}}}, Expected: 2},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := MinReorder(params.N, params.Connections)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
