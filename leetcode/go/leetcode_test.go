@@ -796,3 +796,24 @@ func Test_1466 (t *testing.T) {
         }
     }
 }
+
+func Test_2316 (t *testing.T) {
+    type Params struct {
+        N int
+        Connections [][]int
+    }
+    samples := []*Sample{
+        {Input: &Params{N: 7, Connections: [][]int{{0,2},{0,5},{2,4},{1,6},{5,4}}}, Expected: 14},
+        {Input: &Params{N: 3, Connections: [][]int{{0,1},{0,2},{1,2}}}, Expected: 0},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := CountPairs(params.N, params.Connections)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
