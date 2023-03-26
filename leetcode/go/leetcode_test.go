@@ -817,3 +817,36 @@ func Test_2316 (t *testing.T) {
         }
     }
 }
+/*
+func Test_15 (t *testing.T) {
+    samples := []*Sample{
+        {Input: []int{-1,0,1,2,-1,-4}, Expected: [][]int{{-1,-1,2},{-1,0,1}}},
+    }
+    for k, sample := range samples {
+        result := ThreeSum(sample.Input.([]int))
+        expected := sample.Expected.([][]int)
+        if len(result) != len(expected) {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Errorf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
+*/
+
+func Test_2360 (t *testing.T) {
+    samples := []*Sample{
+        {Input: []int{59,83,46,18,45,52,-1,-1,46,-1,75,86,89,-1,-1,-1,-1,7,-1,34,-1,-1,-1,34,82,-1,75,30,34,-1,87,7,35,-1,-1,54,72,-1,-1,-1,29,56,-1,55,32,44,62,-1,80,-1,-1,15,81,-1,32,-1,-1,53,81,40,81,72,68,-1,-1,-1,87,73,-1,-1,55,-1,-1,-1,-1,-1,53,89,38,25,16,4,71,7,33,-1,42,34,29,33,1,23,-1}, Expected: 3},
+        {Input: []int{3,3,4,2,3}, Expected: 3},
+        {Input: []int{2,-1,3,1}, Expected: -1},
+    }
+    for k, sample := range samples {
+        result := LongestCycle(sample.Input.([]int))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
