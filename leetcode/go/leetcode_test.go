@@ -817,10 +817,11 @@ func Test_2316 (t *testing.T) {
         }
     }
 }
-/*
+
 func Test_15 (t *testing.T) {
     samples := []*Sample{
         {Input: []int{-1,0,1,2,-1,-4}, Expected: [][]int{{-1,-1,2},{-1,0,1}}},
+        {Input: []int{-1,0,1,0}, Expected: [][]int{{-1,0,1}}},
     }
     for k, sample := range samples {
         result := ThreeSum(sample.Input.([]int))
@@ -828,11 +829,10 @@ func Test_15 (t *testing.T) {
         if len(result) != len(expected) {
             t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
         } else {
-            t.Errorf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
         }
     }
 }
-*/
 
 func Test_2360 (t *testing.T) {
     samples := []*Sample{
