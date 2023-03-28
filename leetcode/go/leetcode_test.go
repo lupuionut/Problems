@@ -893,3 +893,23 @@ func Test_16 (t *testing.T) {
         }
     }
 }
+
+func Test_18 (t *testing.T) {
+    type Params struct {
+        Nums []int
+        Target int
+    }
+    samples := []*Sample{
+        {Input: &Params{Nums: []int{1,0,-1,0,-2,2}, Target: 0}, Expected: [][]int{{-2,-1,1,2},{-2,0,0,2},{-1,0,0,1}}},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := FourSum(params.Nums, params.Target)
+        expected := sample.Expected.([][]int)
+        if len(result) != len(expected) {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
