@@ -850,3 +850,25 @@ func Test_2360 (t *testing.T) {
         }
     }
 }
+
+func Test_983 (t *testing.T) {
+    type Params struct {
+        Days []int
+        Costs []int
+    }
+    samples := []*Sample{
+        {Input: &Params{Days: []int{1,4,6,7,8,20}, Costs: []int{2,7,15}}, Expected: 11},
+        {Input: &Params{Days: []int{1,2,3,4,5,6,7,8,9,10,30,31}, Costs: []int{2,7,15}}, Expected: 17},
+        {Input: &Params{Days: []int{1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,21,24,25,27,28,29,30,31,34,37,38,39,41,43,44,45,47,48,49,54,57,60,62,63,66,69,70,72,74,76,78,80,81,82,83,84,85,88,89,91,93,94,97,99}, Costs: []int{9,38,134}}, Expected: 17},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := MincostTickets(params.Days, params.Costs)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
