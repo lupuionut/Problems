@@ -913,3 +913,21 @@ func Test_18 (t *testing.T) {
         }
     }
 }
+
+func Test_1402 (t *testing.T) {
+    samples := []*Sample{
+        {Input: []int{-1,-8,0,5,-9}, Expected: 14},
+        {Input: []int{-1,-8,0,5,-7,3,4,100,-90,67,33,23,234,567,342,455,-33,-100,89,-566,34,562,14,56,135,-999,89,234,56,24,56,14,67,788,454,234,23,34,566,76}, Expected: 183589},
+        {Input: []int{4,3,2}, Expected: 20},
+        {Input: []int{-1,-4,-5}, Expected: 0},
+    }
+    for k, sample := range samples {
+        result := MaxSatisfaction(sample.Input.([]int))
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
