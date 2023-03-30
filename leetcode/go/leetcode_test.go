@@ -931,3 +931,26 @@ func Test_1402 (t *testing.T) {
         }
     }
 }
+
+/*
+func Test_87 (t *testing.T) {
+    type Params struct {
+        S1 string
+        S2 string
+    }
+    samples := []*Sample{
+       // {Input: &Params{S1: "great", S2: "rgeat"}, Expected: true},
+        {Input: &Params{S1: "greacorist", S2: "rgeatrisoc"}, Expected: true},
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := IsScramble(params.S1, params.S2)
+        expected := sample.Expected.(bool)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
+*/
