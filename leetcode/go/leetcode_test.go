@@ -939,7 +939,6 @@ func Test_29 (t *testing.T) {
     }
     samples := []*Sample{
         {Input: &Params{Dividend: 47, Divisor: 2}, Expected: 23},
-        /*
         {Input: &Params{Dividend: -33, Divisor: -7}, Expected: 4},
         {Input: &Params{Dividend: 30, Divisor: -10}, Expected: -3},
         {Input: &Params{Dividend: -30, Divisor: 10}, Expected: -3},
@@ -949,7 +948,6 @@ func Test_29 (t *testing.T) {
         {Input: &Params{Dividend: -33, Divisor: 7}, Expected: -4},
         {Input: &Params{Dividend: 33, Divisor: 7}, Expected: 4},
         {Input: &Params{Dividend: 3532, Divisor: 7}, Expected: 504},
-        */
     }
     for k, sample := range samples {
         params := sample.Input.(*Params)
