@@ -932,6 +932,37 @@ func Test_1402 (t *testing.T) {
     }
 }
 
+func Test_29 (t *testing.T) {
+    type Params struct {
+        Dividend int
+        Divisor int
+    }
+    samples := []*Sample{
+        {Input: &Params{Dividend: 47, Divisor: 2}, Expected: 23},
+        /*
+        {Input: &Params{Dividend: -33, Divisor: -7}, Expected: 4},
+        {Input: &Params{Dividend: 30, Divisor: -10}, Expected: -3},
+        {Input: &Params{Dividend: -30, Divisor: 10}, Expected: -3},
+        {Input: &Params{Dividend: 33, Divisor: -7}, Expected: -4},
+        {Input: &Params{Dividend: -40, Divisor: 10}, Expected: -4},
+        {Input: &Params{Dividend: 1, Divisor: 2}, Expected: 0},
+        {Input: &Params{Dividend: -33, Divisor: 7}, Expected: -4},
+        {Input: &Params{Dividend: 33, Divisor: 7}, Expected: 4},
+        {Input: &Params{Dividend: 3532, Divisor: 7}, Expected: 504},
+        */
+    }
+    for k, sample := range samples {
+        params := sample.Input.(*Params)
+        result := Divide(params.Dividend, params.Divisor)
+        expected := sample.Expected.(int)
+        if result != expected {
+            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
+        } else {
+            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
+        }
+    }
+}
+
 /*
 func Test_87 (t *testing.T) {
     type Params struct {
