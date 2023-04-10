@@ -961,25 +961,30 @@ func Test_29 (t *testing.T) {
     }
 }
 
-/*
-func Test_87 (t *testing.T) {
+func Test_34 (t *testing.T) {
     type Params struct {
-        S1 string
-        S2 string
+        Nums []int
+        Target int
     }
     samples := []*Sample{
-       // {Input: &Params{S1: "great", S2: "rgeat"}, Expected: true},
-        {Input: &Params{S1: "greacorist", S2: "rgeatrisoc"}, Expected: true},
+        {Input: &Params{Nums: []int{3,3,3}, Target: 3}, Expected: []int{0,2}},
+        {Input: &Params{Nums: []int{2,2}, Target: 2}, Expected: []int{0,1}},
+        {Input: &Params{Nums: []int{0,1,2,3,3,3,3,3,5,5,7,7,8,8,9,10}, Target: 5}, Expected: []int{8,9}},
+        {Input: &Params{Nums: []int{0,1,2,3,3,3,3,3,5,5,7,7,8,8,9,10}, Target: 10}, Expected: []int{15,15}},
+        {Input: &Params{Nums: []int{5,6,6,6,6,7,7,7,7,8,8,10}, Target: 7}, Expected: []int{5,8}},
+        {Input: &Params{Nums: []int{5,7,7,8,8,10}, Target: 8}, Expected: []int{3,4}},
+        {Input: &Params{Nums: []int{5,7,7,8,8,10}, Target: 6}, Expected: []int{-1,-1}},
+        {Input: &Params{Nums: []int{}, Target: 0}, Expected: []int{-1,-1}},
+        {Input: &Params{Nums: []int{0}, Target: 0}, Expected: []int{0,0}},
     }
     for k, sample := range samples {
         params := sample.Input.(*Params)
-        result := IsScramble(params.S1, params.S2)
-        expected := sample.Expected.(bool)
-        if result != expected {
+        result := SearchRange(params.Nums, params.Target)
+        expected := sample.Expected.([]int)
+        if result[0] != expected[0] || result[1] != expected[1] {
             t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
         } else {
             t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
         }
     }
 }
-*/
