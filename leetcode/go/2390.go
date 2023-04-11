@@ -6,6 +6,7 @@ package leetcode
     total - keep track of total stars, each time we encounter a star total will
     increase with 2, since we need to move back 2 positions (his position and deleted
     char position).
+    When we encounter a non star char, if total is not 0, swap the values.
 */
 func removeStars(s string) string {
 
