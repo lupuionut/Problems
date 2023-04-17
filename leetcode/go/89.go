@@ -8,16 +8,12 @@ package leetcode
 */
 
 func grayCode(n int) []int {
-    base :=  []int{0,1}
+    base := []int{0}
 
-    if n == 1 {
-        return base
-    }
-
-    for i := 2; i <= n; i++ {
+    for i := 0; i < n; i++ {
         s := len(base) - 1
         for j := s; j >= 0; j-- {
-            m := (1 << (i - 1)) | base[j]
+            m := (1 << i) | base[j]
             base = append(base, m)
         }
     }
