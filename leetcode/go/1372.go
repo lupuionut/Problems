@@ -5,7 +5,7 @@ package leetcode
     ------------------------------------------
     Try to visit starting from root going to left - right - left
     and right - left - right ... until we find a nil node.
-    For this traversal, keep a counter(level) and check it
+    For this traversal, keep a counter(edges) and check it
     against current max value.
     For each visited node, start a new traversal for the opposite
     direction, for ex if we visit left node, we should continue with
@@ -18,26 +18,26 @@ func longestZigZag(root *TreeNode) int {
     var visitRight func(*TreeNode, int)
     max := 0
 
-    visitLeft = func(node *TreeNode, level int) {
+    visitLeft = func(node *TreeNode, edges int) {
         if node == nil {
-            if level > max {
-                max = level
+            if edges > max {
+                max = edges
             }
             return
         }
         visitLeft(node.Left, 0)
-        visitRight(node.Right, level + 1)
+        visitRight(node.Right, edges + 1)
     }
 
-    visitRight = func(node *TreeNode, level int) {
+    visitRight = func(node *TreeNode, edges int) {
         if node == nil {
-            if level > max {
-                max = level
+            if edges > max {
+                max = edges
             }
             return
         }
         visitRight(node.Right, 0)
-        visitLeft(node.Left, level + 1)
+        visitLeft(node.Left, edges + 1)
     }
 
     visitLeft(root.Left, 0)
