@@ -3,24 +3,29 @@
 impl Solution {
     pub fn distance_between_bus_stops(distance: Vec<i32>, start: i32, destination: i32) -> i32 {
         let n = distance.len();
-        let mut d = 0;
-        let mut ps = Vec::new();
-        let mut clockwise = 0;
-        let mut counterclock = 0;
-        ps.push(0);
+        let left: i32 = if destination < start {
+            destination
+        } else {
+            start
+        };
 
-        for i in (0..n) {
-            d += distance[i];
-            ps.push(d);
+        let right: i32 = if destination < start {
+            start
+        } else {
+            destination
+        };
+
+        let mut acc = 0;
+        let mut prefix_sum = Vec::new();
+        prefix_sum.push(0);
+        for m in (0..n) {
+            acc += distance[m];
+            prefix_sum.push(acc);
         }
 
-        if destination > start {
-            clockwise = ps[destination as usize] - ps[start as usize];
-            counterclock = ps[n as usize] - ps[destination as usize] + ps[start as usize];
-        } else {
-            clockwise = ps[start as usize] - ps[destination as usize];
-            counterclock = ps[n as usize] - ps[start as usize] + ps[destination as usize];
-        };
+        let clockwise = prefix_sum[right as usize] - prefix_sum[left as usize];
+        let counterclock =
+            prefix_sum[n as usize] - prefix_sum[right as usize] + prefix_sum[left as usize];
 
         if clockwise < counterclock {
             clockwise
