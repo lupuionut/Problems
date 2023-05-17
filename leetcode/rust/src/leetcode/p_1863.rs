@@ -7,7 +7,7 @@ impl Solution {
 
         for i in 0..nums.len() {
             for j in subsets.clone() {
-                subsets.push(nums[i] ^ j as i32);
+                subsets.push(nums[i] ^ j);
             }
         }
         subsets.into_iter().reduce(|acc, e| acc + e).unwrap()
