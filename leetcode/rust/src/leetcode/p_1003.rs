@@ -2,8 +2,6 @@
 
 impl Solution {
     pub fn is_valid(s: String) -> bool {
-        let mut left = 0;
-        let mut right = 0;
         let mut stack: Vec<char> = Vec::new();
 
         if s.len() % 3 != 0 {
