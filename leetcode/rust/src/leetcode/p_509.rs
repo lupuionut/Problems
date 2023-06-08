@@ -1,7 +1,7 @@
 impl Solution {
     pub fn fib(n: i32) -> i32 {
         let n = n as usize;
-        let mut cache = vec![0; 31];
+        let mut cache = vec![0; (n + 1)];
         let mut i = 2;
         cache[1] = 1;
         while i <= n {
