@@ -1,31 +1,35 @@
 // 530. Minimum Absolute Difference in BST
 // ---------------------------------------
+// Inorder traverse the tree and compare the previous value with current one
 
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
     pub fn get_minimum_difference(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        let mut values: Vec<i32> = vec![];
         let mut min = 100_000;
+        let mut previous: Option<i32> = None;
 
-        fn dfs(node: Option<Rc<RefCell<TreeNode>>>, values: &mut Vec<i32>) {
+        fn inorder_traverse(
+            node: Option<Rc<RefCell<TreeNode>>>,
+            previous: &mut Option<i32>,
+            min: &mut i32,
+        ) {
             let n = node.unwrap();
-            values.push(n.borrow().val);
             if n.borrow().left.is_some() {
-                dfs(n.borrow().left.clone(), values);
+                inorder_traverse(n.borrow().left.clone(), previous, min);
             }
+            let val = n.borrow().val;
+            if let Some(p) = previous {
+                if val - *p < *min {
+                    *min = val - *p;
+                }
+            }
+            *previous = Some(val);
             if n.borrow().right.is_some() {
-                dfs(n.borrow().right.clone(), values);
+                inorder_traverse(n.borrow().right.clone(), previous, min);
             }
         }
-        dfs(root, &mut values);
-        values.sort();
-        for i in 1..values.len() {
-            if values[i] - values[i - 1] < min {
-                min = values[i] - values[i - 1];
-            }
-        }
-
+        inorder_traverse(root, &mut previous, &mut min);
         min
     }
 }
