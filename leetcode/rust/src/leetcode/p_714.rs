@@ -35,3 +35,21 @@ impl Solution {
         dp(0, 0, &prices, fee, &mut cache)
     }
 }
+
+/*
+
+impl Solution {
+    pub fn max_profit(prices: Vec<i32>, fee: i32) -> i32 {
+        let mut no_stock = 0;
+        let mut stock = -prices[0];
+
+        for i in 0..prices.len() {
+            no_stock = no_stock.max(stock + prices[i] - fee);
+            stock = stock.max(no_stock - prices[i]);
+        }
+
+        no_stock
+    }
+}
+
+*/
