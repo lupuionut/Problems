@@ -416,34 +416,6 @@ func Test_567 (t *testing.T) {
 }
 
 /*
-func Test_1011 (t *testing.T) {
-    type Params struct {
-        First []int
-        Second int
-    }
-    samples := []*Sample{
-        // {Input: &Params{First: []int{1,2,3,4,5,6,7,8,9,10}, Second: 5}, Expected: 15,},
-        // {Input: &Params{First: []int{3,2,2,4,1,4}, Second: 3}, Expected: 6,},
-        // {Input: &Params{First: []int{1,2,3,1,1}, Second: 4}, Expected: 3,},
-        // {Input: &Params{First: []int{1,2}, Second: 2}, Expected: 2,},
-        // {Input: &Params{First: []int{1}, Second: 1}, Expected: 1,},
-        // {Input: &Params{First: []int{1,1,1}, Second: 2}, Expected: 2,},
-        // {Input: &Params{First: []int{6,9,2,1,4,1,8,9,7}, Second: 6}, Expected: 9,},
-        // {Input: &Params{First: []int{147,73,265,305,191,152,192,293,309,292,182,157,381,287,73,162,313,366,346,47}, Second: 10}, Expected: 602,},
-    }
-    for k, sample := range samples {
-        result := ShipWithinDays(sample.Input.(*Params).First, sample.Input.(*Params).Second)
-        expected := sample.Expected.(int)
-        if result != expected {
-            t.Errorf("FAIL: For sample %d expected result %v, but got %v", k, expected, result)
-        } else {
-            t.Logf("PASS: For sample %d expected result %v and we got %v", k, expected, result)
-        }
-    }
-}
-*/
-
-/*
 func Test_502 (t *testing.T) {
     type Params struct {
         K int
