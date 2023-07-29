@@ -6,11 +6,9 @@ impl Solution {
         let mut times = vec![];
         fn str_to_int(s: String) -> i32 {
             let parts: Vec<&str> = s.split(':').collect();
-            let mut val = 0;
             let hour = parts[0].parse::<i32>().unwrap();
             let mins = parts[1].parse::<i32>().unwrap();
-            val = hour * 3600 + mins * 60;
-            val
+            hour * 3600 + mins * 60
         }
         time_points.iter().for_each(|s| {
             let t = str_to_int(s.to_string());
