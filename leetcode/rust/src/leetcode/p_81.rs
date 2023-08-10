@@ -13,12 +13,14 @@ impl Solution {
                 return true;
             }
 
+            // if left side is sorted
             if nums[l] < nums[m] {
                 if nums[l] <= target && target < nums[m] {
                     r = m - 1;
                 } else {
                     l = m + 1;
                 }
+            // if left side is not sorted
             } else if nums[l] > nums[m] {
                 if nums[m] < target && target <= nums[r] {
                     l = m + 1;
