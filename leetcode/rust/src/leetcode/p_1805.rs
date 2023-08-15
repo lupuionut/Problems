@@ -8,27 +8,27 @@ impl Solution {
         let mut stack = String::new();
         let mut unique = HashSet::new();
 
+        fn strip_leading_zero(s: &String) -> String {
+            let mut s = s.as_str();
+            while s.starts_with('0') && s.len() > 1 {
+                s = &s[1..];
+            }
+            s.to_string()
+        }
+
         word.chars().for_each(|c| {
             if c.is_numeric() {
                 stack.push(c);
             } else {
                 if stack.len() > 0 {
-                    let mut s = stack.as_str();
-                    while s.starts_with('0') && s.len() > 1 {
-                        s = &s[1..];
-                    }
-                    unique.insert(s.to_string());
+                    unique.insert(strip_leading_zero(&stack));
                     stack = String::new();
                 }
             }
         });
 
         if stack.len() > 0 {
-            let mut s = stack.as_str();
-            while s.starts_with('0') && s.len() > 1 {
-                s = &s[1..];
-            }
-            unique.insert(s.to_string());
+            unique.insert(strip_leading_zero(&stack));
         }
         unique.len() as i32
     }
