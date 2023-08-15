@@ -10,7 +10,7 @@ impl Solution {
             dp[i as usize] = i;
             for j in 1..i {
                 if i % j == 0 {
-                    dp[i as usize] = dp[i as usize].min(dp[(i / j) as usize] + j);
+                    dp[i as usize] = dp[i as usize].min(dp[j as usize] + i / j);
                 }
             }
         }
