@@ -12,16 +12,16 @@ impl Solution {
         let mut stack: Vec<usize> = Vec::new();
         let mut ans = "".to_owned();
 
-        for (pos, c) in s.chars().enumerate() {
-            let d = (c as usize) - 97;
-            max_found_pos[d] = pos;
-        }
+        s.chars().enumerate().for_each(|(idx, chr)| {
+            let chr = (chr as usize) - 97;
+            max_found_pos[chr] = idx;
+        });
 
-        let mut j = 0;
+        let mut curr_idx = 0;
         for b in s.as_bytes() {
-            let d = (*b as usize) - 97;
-            if visited[d] == 1 {
-                j += 1;
+            let current_letter = (*b as usize) - 97;
+            if visited[current_letter] == 1 {
+                curr_idx += 1;
                 continue;
             }
 
@@ -30,21 +30,23 @@ impl Solution {
                 if n == 0 {
                     break;
                 }
-                if stack[n - 1] > d && max_found_pos[stack[n - 1]] > j {
-                    visited[stack[n - 1]] = 0;
+                let last_in_stack = stack[n - 1];
+                if last_in_stack > current_letter && max_found_pos[last_in_stack] > curr_idx {
+                    visited[last_in_stack] = 0;
                     stack.pop();
                 } else {
                     break;
                 }
             }
 
-            visited[d] = 1;
-            stack.push(d);
-            j += 1;
+            visited[current_letter] = 1;
+            stack.push(current_letter);
+            curr_idx += 1;
         }
 
         for i in 0..stack.len() {
-            ans.push((97 + stack[i] as u8) as char);
+            let chr: char = (97 + stack[i] as u8).into();
+            ans.push(chr);
         }
 
         ans
