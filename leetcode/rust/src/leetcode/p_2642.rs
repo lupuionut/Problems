@@ -1,5 +1,6 @@
 // 2642. Design Graph With Shortest Path Calculator
 // ------------------------------------------------
+// Dijkstra algo
 
 use std::collections::BinaryHeap;
 use std::collections::HashSet;
