@@ -24,8 +24,8 @@ impl Solution {
         });
 
         anagrams
-            .iter()
-            .map(|(k, v)| v.clone())
+            .into_iter()
+            .map(|(k, v)| v)
             .collect::<Vec<Vec<String>>>()
     }
 }
