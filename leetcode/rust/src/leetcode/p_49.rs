@@ -1,6 +1,5 @@
 // 49. Group Anagrams
 // ------------------
-
 use std::collections::HashMap;
 
 impl Solution {
@@ -13,14 +12,10 @@ impl Solution {
                 let k = c as usize - 97;
                 key[k] += 1;
             });
-            let to_insert = if let Some(words) = anagrams.get(&key) {
-                let mut words = words.clone();
-                words.push(s.to_string());
-                words
-            } else {
-                vec![s.to_string()]
-            };
-            anagrams.insert(key, to_insert);
+            anagrams
+                .entry(key)
+                .and_modify(|v| v.push(s.to_string()))
+                .or_insert(vec![s.to_string()]);
         });
 
         anagrams
