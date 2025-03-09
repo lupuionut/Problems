@@ -4,22 +4,20 @@
 impl Solution {
     pub fn number_of_alternating_groups(colors: Vec<i32>, k: i32) -> i32 {
         let mut ans = 0;
-        let mut stack = vec![];
+        let mut last = -1;
+        let mut strike = 0;
         let mut head = 0;
         let mut tail = 0;
 
         while tail < colors.len() {
-            if let Some(last) = stack.pop() {
-                if last == colors[head % colors.len()] {
-                    stack.clear();
-                } else {
-                    stack.push(last);
-                }
+            if last == colors[head % colors.len()] {
+                strike = 0;
             }
-            stack.push(colors[head % colors.len()]);
+            last = colors[head % colors.len()];
+            strike += 1;
 
             if (head as i32 - tail as i32 + 1).abs() == k {
-                if stack.len() >= k as usize {
+                if strike >= k {
                     ans += 1;
                 }
                 tail += 1;
