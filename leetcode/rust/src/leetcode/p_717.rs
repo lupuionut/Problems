@@ -6,10 +6,8 @@ impl Solution {
         for i in 0..bits.len() - 1 {
             if stack == 1 {
                 stack = 0;
-            } else {
-                if bits[i] == 1 {
-                    stack = 1;
-                }
+            } else if bits[i] == 1 {
+                stack = 1;
             }
         }
         if stack == 1 {
